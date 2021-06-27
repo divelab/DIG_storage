@@ -1,2 +1,2 @@
 # DIG_storage
-Save data or other files for DIG library usage
+This repo is used to save datasets or other files for [DIG](https://github.com/divelab/DIG) library.
