@@ -1,19 +1,17 @@
 ## SphereNet results on MD17
 The evaluation metric is Force mean absolute error (MAE).
 
-| force MAE        | aspirin | benzene2017 | ethanol | malonaldehyde | naphthalene | salicylic | toluene | uracil |
+|         | aspirin | benzene2017 | ethanol | malonaldehyde | naphthalene | salicylic | toluene | uracil |
 | ---------------- | ------- | ----------- | ------- | ------------- | ----------- | --------- | ------- | ------ |
-| results in paper | 0.43    | 0.178       | 0.208   | 0.34          | 0.178       | 0.36      | 0.155   | 0.267  |
-| rerun results    |**0.375**|0.181|**0.187**|**0.273**|**0.139**|**0.284**|**0.142**|**0.245**|
+| force MAE    |**0.375**|0.181|**0.187**|**0.273**|**0.139**|**0.284**|**0.142**|**0.245**|
 
 ## Usage
 
 The default hyperparameters are listed in parser.
 
 ```python
-from PygMD17 import MD17
-from spherenet import SphereNet
-from eval import ThreeDEvaluator
+from dig.threedgraph.dataset import MD17
+from dig.threedgraph.method import SphereNet
 import argparse
 import os
 import torch
@@ -64,8 +62,6 @@ model = SphereNet(energy_and_force=True, cutoff=args.cutoff, num_layers=args.num
         num_before_skip=1, num_after_skip=2, num_output_layers=3 
         )
 model = model.to(device)
-evaluation = ThreeDEvaluator()
-
 
 for data_name in ['aspirin', 'benzene2017', 'ethanol', 'malonaldehyde', 'naphthalene', 'salicylic', 'toluene', 'uracil']:
     dataset = MD17(root='dataset/', name=data_name)
