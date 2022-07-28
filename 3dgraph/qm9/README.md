@@ -19,7 +19,6 @@ For 'mu', 'alpha', 'G', 'H', 'Cv', we used lr_decay_step_size=150.
 ```python
 from dig.threedgraph.dataset import QM93D
 from dig.threedgraph.method import SphereNet
-from dig.threedgraph.evaluation import ThreeDEvaluator
 import argparse
 import os
 import torch
@@ -69,8 +68,6 @@ model = SphereNet(energy_and_force=False, cutoff=args.cutoff, num_layers=args.nu
             num_before_skip=1, num_after_skip=2, num_output_layers=3 
             )
 model = model.to(device)
-
-evaluation = ThreeDEvaluator()
 
 
 for target in ['mu','alpha','homo','lumo','zpve','U0','U','H','G','Cv']:
